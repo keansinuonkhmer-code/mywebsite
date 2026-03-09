@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Shop</title>
+<title>My Shop App</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>Welcome to My Shop</h1>
+<header>My Shop App</header>
 
-<img src="phone.jpg" width="200">
+<div id="loginForm" class="login-container">
+  <h2>Login / Register</h2>
+  <input type="text" placeholder="Name" id="name">
+  <input type="text" placeholder="Phone" id="phone">
+  <input type="password" placeholder="Password" id="password">
+  <button onclick="login()">Login</button>
+  <button onclick="register()">Register</button>
+  <p id="loginError" style="color:red;"></p>
+</div>
 
-<p>iPhone 14</p>
-<p>Price: $900</p>
+<div class="products" id="productPage" style="display:none;"></div>
 
-<button>Buy Now</button>
-
+<script src="script.js"></script>
 </body>
 </html>
