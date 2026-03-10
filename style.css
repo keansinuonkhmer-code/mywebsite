@@ -1,27 +1,117 @@
-body{
-  margin:0; font-family: Arial; background:#f0f0f0;
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    transition: .3s linear;
 }
-header{
-  background:#4CAF50; color:white; padding:15px; text-align:center; font-size:24px;
+
+@font-face {
+    font-family: "blackchancery";
+    src: url("blackchancery.ttf");
 }
-.login-container{
-  background:white; width:300px; padding:20px; margin:50px auto; border-radius:10px; box-shadow:0 0 10px gray;
+
+body {
+    height: 100vh;
+    font-family: "blackchancery";
+    background: url(car.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;\;
 }
-.login-container input{
-  width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc;
+nav { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 80px;
+    line-height: 70px;
+    backdrop-filter: blur(20px);
 }
-.login-container button{
-  width:48%; padding:10px; background:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer; margin:5px 1%;
+
+.logo {
+    color: #fd009c;
+    margin-left: 180px;
+    font-size: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
-.products{
-  display:flex; flex-wrap:wrap; justify-content:center; padding:20px;
+
+.menu {
+    margin-right: 60px;
 }
-.product{
-  background:white; width:180px; margin:10px; border-radius:10px; text-align:center; box-shadow:0 0 5px gray;
+
+li {
+    list-style: none;
+    display: inline-block;
 }
-.product img{
-  width:150px; height:150px; border-radius:10px; margin-top:10px;
+
+li a {
+    text-decoration: none;
+    margin-right: 30px;
+    color: #e9e9e9;
+    padding: 8px;
+    font-size: 24px;   border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
-.product h3{margin:5px 0; font-size:16px;}
-.product p{margin:3px 0; font-size:14px;}
-.product button{margin:10px 0; padding:8px; background:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;}
+
+.active, {
+    border: 1px solid #fd009c;
+    background-color; #fd009c;
+    color: #e9e9e9;
+}
+
+li a:hover {
+    border: 1px solid #fd009c;
+    background-color: #fd009c;
+    color: #e9e9e9;
+}
+
+.margin-r {
+    margin-right: 40px;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+}
+
+h2 {
+    position: absolute;
+    top: 10%;
+    left: 2%;
+    font-size: 95px;
+    letter-spacing: 5px;
+    color: #fd009c;
+}
+
+h4{
+    position: absolute;
+    top: 29px;
+    left: 3%;
+    font-size: 21px;
+    letter-spacing: 2px;
+    width: 400px;
+    text-align: center;
+    color: #fd009c;
+    font-weight: 900px;
+}
+
+.btn-start{
+    position: absolute;
+    top: 38px;
+    left: 9px;
+    width: 230px;
+    height: 55px;
+    border: 1px solid #fd009c;
+    background-color: #fd009c;
+    border-top-right-radius: 50px;
+    color: #e9e9e9;
+    font-family: "blackchancery";
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.btn-start:hover {
+    color: #000000;
+}
