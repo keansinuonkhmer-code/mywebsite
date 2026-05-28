@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Special Deals - ShopCar</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+    .deals-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .deals-header h1 {
+      color: #ff6600;
+      font-size: 2.5rem;
+    }
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .deal-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .deal-card:hover {
+      transform: translateY(-5px);
+    }
+    .deal-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .deal-info {
+      padding: 15px;
+    }
+    .deal-info h3 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+    }
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #007bff;
+      margin: 8px 0;
+    }
+    .deal-badge {
+      display: inline-block;
+      background-color: #ff6600;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    .features {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 10px 0;
+      line-height: 1.4;
+    }
+    .btn-deal {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      width: 100%;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    .btn-deal:hover {
+      background-color: #218838;
+    }
+    .back-home {
+      display: inline-block;
+      margin-top: 40px;
+      background: #007bff;
+      color: white;
+      padding: 10px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .back-home:hover {
+      background: #0056b3;
+    }
+    body.dark .deal-card {
+      background: #1e1e2e;
+      color: #eee;
+    }
+    body.dark .features {
+      color: #ccc;
+    }
+    .footer-deals {
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="deals-header">
+  <h1>🔥 Hot Deals & Special Offers 🔥</h1>
+  <p>Grab these limited-time promotions before they're gone!</p>
+</div>
+
+<div class="deals-grid" id="dealsGrid">
+  <!-- Deals will be loaded by JavaScript -->
+</div>
+
+<div class="footer-deals">
+  <a href="index.html" class="back-home">← Back to Home</a>
+</div>
+
+<script>
+  // Array of deal cars with details
+  const dealsData = [
+    {
+      name: "2024 Toyota RAV4",
+      price: "$30,000",
+      dealPrice: "$25,000",
+      discount: "$5,000 OFF",
+      image: "https://www.tuningblog.eu/wp-content/uploads/2023/10/Toyota-RAV4-GR-Sport-2024-Tuning-SUV-3.jpg",
+      features: "✅ Hybrid option • ✅ AWD • ✅ 5-year warranty • ✅ Save $5,000"
+    },
+    {
+      name: "BMW M4 Competition",
+      price: "$70,000",
+      dealPrice: "$69,300",
+      discount: "0.9% Financing",
+      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+      features: "✅ 503 hp • ✅ 0-60 in 3.8s • ✅ 0.9% APR • ✅ First 10 buyers only"
+    },
+    {
+      name: "2025 Ford Mustang GT",
+      price: "$55,000",
+      dealPrice: "$55,000",
+      discount: "Free 2-year maintenance",
+      image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c",
+      features: "✅ V8 engine • ✅ Pre-order now • ✅ Free maintenance • ✅ Limited edition"
+    },
+    {
+      name: "Tesla Model 3",
+      price: "$42,000",
+      dealPrice: "$39,900",
+      discount: "$2,100 OFF + Free Supercharger",
+      image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89",
+      features: "✅ Electric • ✅ Autopilot • ✅ $2,100 off • ✅ 1 year free supercharging"
+    },
+    {
+      name: "Honda Civic 2024",
+      price: "$22,000",
+      dealPrice: "$20,500",
+      discount: "$1,500 OFF",
+      image: "https://images.unsplash.com/photo-1502877338535-766e1452684a",
+      features: "✅ 40 MPG • ✅ Reliable • ✅ $1,500 cash back • ✅ 0% financing"
+    },
+    {
+      name: "Audi A4 Quattro",
+      price: "$40,000",
+      dealPrice: "$37,200",
+      discount: "Save $2,800",
+      image: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d",
+      features: "✅ Quattro AWD • ✅ Virtual cockpit • ✅ $2,800 discount • ✅ 0.9% APR"
+    }
+  ];
+
+  const grid = document.getElementById("dealsGrid");
+
+  function showDeals() {
+    grid.innerHTML = "";
+    dealsData.forEach(deal => {
+      grid.innerHTML += `
+        <div class="deal-card">
+          <img src="${deal.image}" alt="${deal.name}" onerror="this.src='https://via.placeholder.com/300x200?text=Car+Image'">
+          <div class="deal-info">
+            <span class="deal-badge">🔥 ${deal.discount}</span>
+            <h3>${deal.name}</h3>
+            <div class="price">
+              <span style="text-decoration: line-through; color:#999;">${deal.price}</span>
+              &nbsp;→&nbsp;
+              <strong style="color:#28a745;">${deal.dealPrice}</strong>
+            </div>
+            <div class="features">${deal.features}</div>
+            <button class="btn-deal" onclick="alert('Contact seller on Telegram: @sinuonkean to claim this deal!')">Claim Deal →</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  showDeals();
+</script>
+
+</body>
+</html>

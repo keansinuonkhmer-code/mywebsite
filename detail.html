@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="detail-page">
+    <img id="carImage" src="" alt="Car" />
+    <h1 id="carName"></h1>
+    <h2 id="carPrice"></h2>
+    <p id="carDesc"></p>
+
+    <button onclick="addToCart()">Add to Cart</button>
+    <a href="https://t.me/sinuonkean" target="_blank">Contact Seller</a>
+  </div>
+
+  <script>
+    const car = JSON.parse(localStorage.getItem("selectedCar"));
+
+    if (car) {
+      document.getElementById("carImage").src = car.image;
+      document.getElementById("carName").innerText = car.name;
+      document.getElementById("carPrice").innerText = car.price;
+      document.getElementById("carDesc").innerText = car.desc;
+    } else {
+      document.querySelector(".detail-page").innerHTML = "<h2>No car selected</h2>";
+    }
+
+    function addToCart() {
+  let cart = JSON.parse(localStorage.getItem("cartCars")) || [];
+  let carToAdd = { ...car };
+  if (!carToAdd.image || carToAdd.image === "") {
+    carToAdd.image = "https://via.placeholder.com/150?text=No+Image";
+  }
+  cart.push(carToAdd);
+  localStorage.setItem("cartCars", JSON.stringify(cart));
+  alert("Car added to cart!");
+}
+  </script>
+
+</body>
+</html>

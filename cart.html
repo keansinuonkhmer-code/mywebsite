@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cart-page">
+  <h1>Your Cart 🛒</h1>
+  <div id="cartList"></div>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cartCars")) || [];
+
+const list = document.getElementById("cartList");
+
+function showCart() {
+  list.innerHTML = "";
+  let total = 0;
+
+  if(cart.length === 0){
+    list.innerHTML = "<h2>Your cart is empty 😢</h2>";
+    return;
+  }
+
+  cart.forEach((car, index) => {
+    const price = Number(car.price.replace(/[$,]/g, ""));
+    total += price;
+
+    list.innerHTML += `
+      <div class="cart-item">
+        <img src="${car.image}">
+        <div>
+          <h3>${car.name}</h3>
+          <p>${car.price}</p>
+          <button onclick="removeItem(${index})">❌ Remove</button>
+        </div>
+      </div>
+    `;
+  });
+
+  list.innerHTML += `<h2 class="total">Total: $${total}</h2>`;
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem("cartCars", JSON.stringify(cart));
+  showCart();
+}
+
+showCart();
+</script>
+
+</body>
+</html>
