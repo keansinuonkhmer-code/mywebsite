@@ -473,3 +473,110 @@ function updateCartCount(){
 }
 
 updateCartCount();
+
+const chatBtn = document.getElementById("chatBtn");
+const chatBox = document.getElementById("chatBox");
+
+chatBtn.onclick = () => {
+  chatBox.style.display =
+    chatBox.style.display === "block"
+      ? "none"
+      : "block";
+};
+
+function sendMessage() {
+
+  const input = document.getElementById("chatInput");
+  const body = document.getElementById("chatBody");
+
+  let text = input.value.trim();
+
+  if(text === "") return;
+
+  body.innerHTML += `
+    <div class="user-msg">${text}</div>
+  `;
+
+  let reply = "Sorry, I don't understand.";
+
+  if(text.toLowerCase().includes("hello")){
+    reply = "Hello! Welcome to ShopCar 🚗";
+  }
+  else if(text.toLowerCase().includes("price")){
+    reply = "Please click a car to see its price.";
+  }
+  else if(text.toLowerCase().includes("contact")){
+    reply = "You can contact seller via Telegram.";
+  }
+  else if(text.toLowerCase().includes("car")){
+    reply = "We have many cars available.";
+  }
+  else if(text.toLowerCase().includes("help")){
+    reply = "How can I assist you?";
+  }
+  else if(text.toLowerCase().includes("thanks")){
+    reply = "You're welcome!";
+  }
+  else if(text.toLowerCase().includes("bye")){
+    reply = "Goodbye! Have a nice day!";
+  }
+  else if(text.toLowerCase().includes("deals")){
+    reply = "Check out our latest deals on the Deals page!";
+  }
+  else if(text.toLowerCase().includes("about")){
+    reply = "ShopCar is your one-stop destination for buying and selling cars online. We offer a wide selection of vehicles, from affordable sedans to luxury sports cars. Our platform is designed to make the car buying process easy and convenient for everyone.";
+  }
+  else if(text.toLowerCase().includes("saved")){
+    reply = "You can view your saved cars by clicking the Saved button.";
+  }
+  else if(text.toLowerCase().includes("cart")){
+    reply = "You can view your cart by clicking the Cart button.";
+  }
+  else if(text.toLowerCase().includes("search")){
+    reply = "You can search for cars using the search bar at the top.";
+  }
+  else if(text.toLowerCase().includes("filter")){
+    reply = "You can filter cars by price using the buttons above the search bar.";
+  }
+  else if(text.toLowerCase().includes("bmw")){
+    reply = "BMW is a German luxury car manufacturer known for its performance and style.";
+  }
+  else if(text.toLowerCase().includes("toyota")){
+    reply = "Toyota is a Japanese car manufacturer known for its reliability and affordability.";
+  }
+  else if(text.toLowerCase().includes("ford")){
+    reply = "Ford is an American car manufacturer known for its trucks and muscle cars.";
+  }
+  else if(text.toLowerCase().includes("audi")){
+    reply = "Audi is a German luxury car manufacturer known for its technology and design.";
+  }
+  else if(text.toLowerCase().includes("prado")){
+    reply = "The Toyota Highlander Prado 2024 is a spacious and capable SUV for all terrains.";
+  }
+  else if(text.toLowerCase().includes("rav4")){
+    reply = "The Toyota RAV4 GR Sport 2024 is a sporty version of the popular RAV4 SUV.";
+  }
+  else if(text.toLowerCase().includes("prius")){
+    reply = "The Toyota Prius (2024) is a fuel-efficient hybrid sedan.";
+  }
+  else if(text.toLowerCase().includes("i8")){
+    reply = "The BMW i8 is a futuristic hybrid sports car from BMW.";
+  }
+  else if(text.toLowerCase().includes("cheap")){
+    reply = "You can filter cars under $30,000 by clicking the Cheap button.";
+  }
+  else if(text.toLowerCase().includes("expensive")){
+    reply = "You can filter cars $30,000 and above by clicking the Expensive button.";
+  }
+  else if(text.toLowerCase().includes("save")){
+    reply = "You can save a car by clicking the heart icon on the car card.";
+  }
+
+  body.innerHTML += `
+    <div class="bot-msg">${reply}</div>
+  `;
+
+  input.value = "";
+
+  body.scrollTop = body.scrollHeight;
+}
